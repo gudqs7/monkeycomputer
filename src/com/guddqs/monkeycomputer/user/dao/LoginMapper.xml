@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guddqs.monkeycomputer.user.dao.LoginMapper">
+	<resultMap id="BaseResultMap" type="login">
+		<id column="LOGINID" jdbcType="OTHER" property="loginid" />
+		<result column="LOGINNAME" jdbcType="OTHER" property="loginname" />
+		<result column="LOGINPWD" jdbcType="OTHER" property="loginpwd" />
+		<result column="ISADMIN" jdbcType="OTHER" property="isadmin" />
+		<result column="STATE" jdbcType="OTHER" property="state" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		LOGINID, LOGINNAME, LOGINPWD, ISADMIN, STATE
+	</sql>
+	<select id="selectByExample" parameterType="loginExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from LOGIN
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from LOGIN
+		where LOGINID = #{loginid,jdbcType=OTHER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from LOGIN
+		where LOGINID = #{loginid,jdbcType=OTHER}
+	</delete>
+	<delete id="deleteByExample" parameterType="loginExample">
+		delete from LOGIN
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="login">
+		insert into LOGIN (LOGINID, LOGINNAME, LOGINPWD,
+		ISADMIN, STATE)
+		values (#{loginid,jdbcType=OTHER}, #{loginname,jdbcType=OTHER},
+		#{loginpwd,jdbcType=OTHER},
+		#{isadmin,jdbcType=OTHER}, #{state,jdbcType=OTHER})
+	</insert>
+	<insert id="insertSelective" parameterType="login">
+		<selectKey resultType="int" order="BEFORE" keyProperty="loginid">
+			select seq_monkey.nextval from dual
+		</selectKey>
+		insert into LOGIN
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="loginid != null">
+				LOGINID,
+			</if>
+			<if test="loginname != null">
+				LOGINNAME,
+			</if>
+			<if test="loginpwd != null">
+				LOGINPWD,
+			</if>
+			<if test="isadmin != null">
+				ISADMIN,
+			</if>
+			<if test="state != null">
+				STATE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="loginid != null">
+				#{loginid,jdbcType=OTHER},
+			</if>
+			<if test="loginname != null">
+				#{loginname,jdbcType=OTHER},
+			</if>
+			<if test="loginpwd != null">
+				#{loginpwd,jdbcType=OTHER},
+			</if>
+			<if test="isadmin != null">
+				#{isadmin,jdbcType=OTHER},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=OTHER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="loginExample"
+		resultType="java.lang.Integer">
+		select count(*) from LOGIN
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update LOGIN
+		<set>
+			<if test="record.loginid != null">
+				LOGINID = #{record.loginid,jdbcType=OTHER},
+			</if>
+			<if test="record.loginname != null">
+				LOGINNAME = #{record.loginname,jdbcType=OTHER},
+			</if>
+			<if test="record.loginpwd != null">
+				LOGINPWD = #{record.loginpwd,jdbcType=OTHER},
+			</if>
+			<if test="record.isadmin != null">
+				ISADMIN = #{record.isadmin,jdbcType=OTHER},
+			</if>
+			<if test="record.state != null">
+				STATE = #{record.state,jdbcType=OTHER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update LOGIN
+		set LOGINID = #{record.loginid,jdbcType=OTHER},
+		LOGINNAME = #{record.loginname,jdbcType=OTHER},
+		LOGINPWD = #{record.loginpwd,jdbcType=OTHER},
+		ISADMIN = #{record.isadmin,jdbcType=OTHER},
+		STATE = #{record.state,jdbcType=OTHER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="login">
+		update LOGIN
+		<set>
+			<if test="loginname != null">
+				LOGINNAME = #{loginname,jdbcType=OTHER},
+			</if>
+			<if test="loginpwd != null">
+				LOGINPWD = #{loginpwd,jdbcType=OTHER},
+			</if>
+			<if test="isadmin != null">
+				ISADMIN = #{isadmin,jdbcType=OTHER},
+			</if>
+			<if test="state != null">
+				STATE = #{state,jdbcType=OTHER},
+			</if>
+		</set>
+		where LOGINID = #{loginid,jdbcType=OTHER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="login">
+		update LOGIN
+		set LOGINNAME = #{loginname,jdbcType=OTHER},
+		LOGINPWD = #{loginpwd,jdbcType=OTHER},
+		ISADMIN = #{isadmin,jdbcType=OTHER},
+		STATE = #{state,jdbcType=OTHER}
+		where LOGINID = #{loginid,jdbcType=OTHER}
+	</update>
+</mapper>

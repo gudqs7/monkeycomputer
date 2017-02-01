@@ -1,0 +1,84 @@
+*{padding: 0px; margin: 0px; font-size: 18px; font-family: "仿宋"; }
+#top,#userdaohang,#left,#daohang{color: white;}
+a{color: white; font-size: 18px; text-decoration: none;}	
+
+.kuang{width:1000px; margin: 0px auto; border: 2px solid #EEEEEE; }
+#login{padding:100px 15px; background: #00CCFF;}
+#login input{color: #f60; padding: 10px 40px; background: white;}
+#foot{margin: 20px; clear: both; overflow: hidden; color: gray;}
+.right{float: right;}
+.left{float: left;}
+#top{clear: both; overflow: hidden; height: 25px; width: 1000px; margin: 0px auto; background: #00CCFF; padding: 16px;}		
+#register{width:1000px; margin: 0px auto; border: 2px solid #EEEEEE; background: #00CCFF;padding: 50px 15px;}
+#register input{color: #f60; padding: 7px 20px; background: white;}
+
+#userdaohang{ padding: 15px;clear: both;  height: 35px; width: 1000px;  margin: 0px auto;}
+#userdaohang ul{padding: 0px; margin: 0px;}
+#userdaohang ul li{float: left; padding: 10px; background: #00CCFF;}
+#userdaohang ul li dl{ overflow: hidden; clear: both;}
+#userdaohang ul li dl dd{display: none; border-bottom: 1px #fff ; position:absolute; margin-top: 10px; margin-left: -10px;}
+#userdaohang ul li dl dd ul li{float: none;}
+
+li{list-style: none;}
+
+#userinfo{padding:50px 15px;  }
+#userinfo input{padding: 4px 10px; }
+#updatepass{padding: 100px;}
+#address{ width: 1000px;}
+#address table tr td{padding: 9px;}
+
+.detail{padding: 36.8px; margin: 10px; overflow: hidden; clear: both; width: 900px;}
+.space1{ margin: 344px}
+.space2{margin: 320px;}
+.space3{margin: 150px;}
+#detail{
+	padding: 100px 20px;
+}
+
+#left{width: 270px; border: 1px solid #eee; position:absolute; left: 20px; top: 10px; background: #00CCFF;}
+#left dl dt{padding: 17px 0px 17px 50px; cursor: pointer;}
+#left dl dd{display: none;padding: 12px 0px 12px 50px;cursor: pointer;}
+
+#picproduct{position: relative; top:10px;left: 330px; width:600px; height:300px; overflow: hidden; }
+#showpic{width: 2000%; position: absolute; }
+#showpic ul li {float: left;}
+
+
+#daohang ul li{padding: 10px 7px; color: white; }
+#daohang{clear: both; overflow: hidden;	 margin: 0px auto; width: 1000px; background: #FF66FF; }
+
+
+#head{padding: 7px; width: 588px; border-bottom: 1px groove; color: red; font-family: "隶书"; font-size: 24px;}
+#hotproduct{position: relative; top:30px;left: 330px; border: 1px groove; width: 600px; }
+#hotproduct ul li a{color: black; font-family: "仿宋"; font-size: 20px;}
+#hotproduct ul li a span.red{color: red;font-family: "仿宋"; font-size: 20px;}
+.hot{padding: 10px; color: red;}
+
+#bigpic{display: none; width: 400px; height: 300px; overflow: hidden; position: absolute;}
+#big{position: relative; z-index: 999;}
+
+#product{margin: 0px auto; width: 1000px; border: 1px groove; overflow: hidden; padding: 50px 10px;}
+
+#productpic{margin-left: 100px; cursor: pointer;}
+#productdetail{ padding: 20px; float: right; margin-right:50px; }
+
+#taocan{padding: 7px;}
+.packagedetail{border: 1px groove; padding: 5px; margin: 4px; cursor: pointer;}
+
+#jia,#jian,.jia,.jian{border: 1px solid #000; background: skyblue; margin:10px; padding: 1px 4px; cursor: pointer;}
+
+#detaildesc{border-top: 3px solid #f60; padding: 50px; clear: both; }
+
+#cart{padding: 20px; width: 800px; padding-left: 120px; clear: both; overflow: hidden; }
+td img{vertical-align: middle;}
+
+#order{padding: 120px; overflow: hidden; clear: both; width: 800px;}
+#order img{vertical-align: middle;}
+
+#cart #jiesuan{ padding: 15px 50px; color: #fff; background: #f50; font-size: 18px;}
+
+
+
+
+
+

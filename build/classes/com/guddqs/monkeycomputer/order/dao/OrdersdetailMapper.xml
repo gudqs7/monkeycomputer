@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guddqs.monkeycomputer.order.dao.OrdersdetailMapper">
+	<resultMap id="BaseResultMap" type="ordersdetail">
+		<id column="ID" property="id" jdbcType="OTHER" />
+		<result column="ORDERID" property="orderid" jdbcType="OTHER" />
+		<result column="PRODUCTID" property="productid" jdbcType="OTHER" />
+		<result column="NUM" property="num" jdbcType="OTHER" />
+		<result column="PRODUCTPACKAGEID" property="productpackageid" jdbcType="OTHER" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		ID, ORDERID, PRODUCTID, NUM ,PRODUCTPACKAGEID
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="ordersdetailExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from ORDERSDETAIL
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from ORDERSDETAIL
+		where ID = #{id,jdbcType=OTHER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from ORDERSDETAIL
+		where ID = #{id,jdbcType=OTHER}
+	</delete>
+	<delete id="deleteByExample" parameterType="ordersdetailExample">
+		delete from ORDERSDETAIL
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="ordersdetail">
+	    <selectKey resultType="int" order="BEFORE" keyProperty="id">
+	    	select seq_monkey.nextval from dual
+	    </selectKey>
+		insert into ORDERSDETAIL (ID, ORDERID, PRODUCTID,
+		NUM,PRODUCTPACKAGEID)
+		values (#{id,jdbcType=OTHER}, #{orderid,jdbcType=OTHER},
+		#{productid,jdbcType=OTHER},
+		#{num,jdbcType=OTHER},#{productpackageid,jdbcType=OTHER})
+	</insert>
+	<insert id="insertSelective" parameterType="ordersdetail">
+	    <selectKey resultType="int" order="BEFORE" keyProperty="id">
+	    	select seq_monkey.nextval from dual
+	    </selectKey>
+		insert into ORDERSDETAIL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="orderid != null">
+				ORDERID,
+			</if>
+			<if test="productid != null">
+				PRODUCTID,
+			</if>
+			<if test="num != null">
+				NUM,
+			</if>
+			<if test="productpackageid != null">
+				PRODUCTPACKAGEID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=OTHER},
+			</if>
+			<if test="orderid != null">
+				#{orderid,jdbcType=OTHER},
+			</if>
+			<if test="productid != null">
+				#{productid,jdbcType=OTHER},
+			</if>
+			<if test="num != null">
+				#{num,jdbcType=OTHER},
+			</if>
+			<if test="productpackageid != null">
+				#{productpackageid,jdbcType=OTHER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="ordersdetailExample"
+		resultType="java.lang.Integer">
+		select count(*) from ORDERSDETAIL
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update ORDERSDETAIL
+		<set>
+			<if test="record.id != null">
+				ID = #{record.id,jdbcType=OTHER},
+			</if>
+			<if test="record.orderid != null">
+				ORDERID = #{record.orderid,jdbcType=OTHER},
+			</if>
+			<if test="record.productid != null">
+				PRODUCTID = #{record.productid,jdbcType=OTHER},
+			</if>
+			<if test="record.num != null">
+				NUM = #{record.num,jdbcType=OTHER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update ORDERSDETAIL
+		set ID = #{record.id,jdbcType=OTHER},
+		ORDERID = #{record.orderid,jdbcType=OTHER},
+		PRODUCTID = #{record.productid,jdbcType=OTHER},
+		NUM = #{record.num,jdbcType=OTHER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="ordersdetail">
+		update ORDERSDETAIL
+		<set>
+			<if test="orderid != null">
+				ORDERID = #{orderid,jdbcType=OTHER},
+			</if>
+			<if test="productid != null">
+				PRODUCTID = #{productid,jdbcType=OTHER},
+			</if>
+			<if test="num != null">
+				NUM = #{num,jdbcType=OTHER},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=OTHER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="ordersdetail">
+		update ORDERSDETAIL
+		set ORDERID = #{orderid,jdbcType=OTHER},
+		PRODUCTID = #{productid,jdbcType=OTHER},
+		NUM = #{num,jdbcType=OTHER}
+		where ID = #{id,jdbcType=OTHER}
+	</update>
+</mapper>
